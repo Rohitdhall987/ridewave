@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ridewave/screens/SplashScreen.dart';
+import 'package:ridewave/screens/UpdatePage.dart';
+import 'package:ridewave/screens/login.dart';
 import 'package:ridewave/utils/AppColors.dart';
 
 
@@ -12,16 +14,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ProviderScope(
-      child: MaterialApp.router(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: AppColors.blue),
-          textTheme: GoogleFonts.robotoTextTheme(),
-          useMaterial3: true,
-        ),
-        routerConfig: _routes,
+    return MaterialApp.router(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.blue),
+        textTheme: GoogleFonts.robotoTextTheme(),
+        useMaterial3: true,
       ),
+      routerConfig: _routes,
     );
   }
   final _routes = GoRouter(
@@ -39,7 +39,12 @@ class MyApp extends StatelessWidget {
         GoRoute(
             path: "/login",
             name: "login",
-            builder: (state,context)=>const Placeholder()
+            builder: (state,context)=>const GoogleLoginPage()
+        ),
+        GoRoute(
+            path: "/update",
+            name: "Update",
+            builder: (state,context)=>const UpdatePage()
         ),
       ]
   );

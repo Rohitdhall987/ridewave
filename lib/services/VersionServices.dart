@@ -4,7 +4,7 @@ import 'dart:convert';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-class ApiServices{
+class VersionService{
   Future<Map<String, dynamic>> versionCheck() async {
     final response = await http.get(Uri.parse('${dotenv.env["BASEURL"]}/versionCheck'));
 
