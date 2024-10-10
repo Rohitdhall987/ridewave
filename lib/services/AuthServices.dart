@@ -21,39 +21,51 @@ class AuthService {
          throw "unable to login. GoogleSignInAccount is null";
        }
 
-       _updateInServer(acc.email,acc.id);
 
-       return true;
+
+       return await _updateInServer(acc.email,acc.id);
 
      }catch (e){
         return false;
      }
 
-    _setLoggedIn(true);
+
   }
 
-  void _updateInServer(email,uid)async{
+  Future<bool> _updateInServer(email,uid)async{
 
-    Uri url=Uri.https(
-        dotenv.env["DOMAIN"].toString(),
-        "/api/UserRegister",
-        {
-          "email":email,
-          "uid":uid,
-        }
-    );
-    http.Response response =await http.post(url);
+    // print("saving in server");
 
-    if(response.statusCode== 200){
-      var userData=jsonDecode(response.body);
-      _setLogInData(
+
+    try{
+      final url="https://${dotenv.env["DOMAIN"]}/api/UserRegister?email=$email&uid=$uid";
+      http.Response response =await http.post(Uri.parse(url));
+
+      //
+      // print(url);
+      // print(response.body);
+
+      if(response.statusCode== 200){
+        var userData=jsonDecode(response.body);
+        await _setLogInData(
           userData["user"]["id"],
           userData["user"]["uid"],
           userData["user"]["name"],
           userData["user"]["email"],
           userData["token"],
-      );
+        );
+
+        return true;
+      }
+
+      return false;
+    }catch(e){
+      // print(e);
+      return false;
     }
+
+
+
   }
 
    Future<bool> handleLogOut()async{
@@ -81,6 +93,8 @@ class AuthService {
     await prefs.setString("name", name);
     await prefs.setString("email", email);
     await prefs.setString("token", token);
+
+    print("displaying saved data ${await getLoginData()} ");
   }
 
   static Future<Map<String,dynamic>> getLoginData() async {

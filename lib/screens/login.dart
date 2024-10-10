@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:ridewave/services/AuthServices.dart';
 import 'package:ridewave/utils/AppColors.dart';
+import 'package:ridewave/widgets/SnackBar.dart';
 
 class GoogleLoginPage extends StatefulWidget {
   const GoogleLoginPage({super.key});
@@ -30,11 +31,14 @@ class _GoogleLoginPageState extends State<GoogleLoginPage> {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed:()=> _authService.handleLogin().then((result){
-                  if(result)GoRouter.of(context).goNamed("home");
+                  if(result){GoRouter.of(context).goNamed("home");}
+                  else {
+                    showBottomSnackBar(context, "Failed to login.");
+                  }
                 }),
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                  backgroundColor: AppColors.blue,
+                  backgroundColor: AppColors.primary,
                   foregroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),

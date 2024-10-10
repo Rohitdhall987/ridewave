@@ -13,7 +13,7 @@ class UpdatePage extends StatelessWidget {
             color: Colors.white
           ),
         ),
-        backgroundColor: AppColors.blue,
+        backgroundColor: AppColors.primary,
 
       ),
       body: Padding(
@@ -45,7 +45,7 @@ class UpdatePage extends StatelessWidget {
               },
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                backgroundColor: AppColors.blue,
+                backgroundColor: AppColors.primary,
                 foregroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),

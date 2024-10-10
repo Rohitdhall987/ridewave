@@ -10,8 +10,6 @@ class UserRepository{
   // Get login state
   static void isLoggedIn(context) async {
     final prefs = await SharedPreferences.getInstance();
-
-    print(prefs.getBool("isLoggedIn").toString()+"  is login");
     if(prefs.getBool("isLoggedIn")??false){
       GoRouter.of(context).goNamed("home");
     }else{
@@ -20,7 +18,9 @@ class UserRepository{
   }
 
   static Future<LoginData> getUserData()async{
-    return LoginData.fromJson(await AuthService.getLoginData());
+    var data=await AuthService.getLoginData();
+    print(data);
+    return LoginData.fromJson(data);
   }
 
 }
