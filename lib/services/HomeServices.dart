@@ -21,7 +21,27 @@ class HomeService{
     if (response.statusCode == 200) {
       return json.decode(response.body);
     } else {
-      throw Exception('Failed to load user data');
+      throw Exception('Failed to load states');
     }
   }
+
+
+
+  static Future<Map<String, dynamic>> getSpecialTrips() async {
+    final LoginData user= await UserRepository.getUserData();
+    final response = await http.post(
+        Uri.parse('${dotenv.env["BASEURL"]}/user/specialTrips?user_id=${user.id}'),
+        headers: {
+          HttpHeaders.authorizationHeader : "Bearer ${user.token}"
+        }
+    );
+
+    if (response.statusCode == 200) {
+      return json.decode(response.body);
+    } else {
+      throw Exception('Failed to load special trips');
+    }
+  }
+
+
 }

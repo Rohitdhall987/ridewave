@@ -28,18 +28,15 @@ class Data {
     required this.image,
     required this.state,
     required this.count,
-    required this.id,
   });
   late final String image;
   late final String state;
   late final int count;
-  late final int? id;
 
   Data.fromJson(Map<String, dynamic> json){
     image = json['image'];
     state = json['state'];
     count = json['count'];
-    id = json['id'];
   }
 
   Map<String, dynamic> toJson() {
@@ -47,7 +44,6 @@ class Data {
     _data['image'] = image;
     _data['state'] = state;
     _data['count'] = count;
-    _data['id'] = count;
     return _data;
   }
 }
