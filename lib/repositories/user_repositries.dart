@@ -19,7 +19,7 @@ class UserRepository{
 
   static Future<LoginData> getUserData()async{
     var data=await AuthService.getLoginData();
-    print(data);
+    // print(data);
     return LoginData.fromJson(data);
   }
 

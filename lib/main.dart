@@ -11,7 +11,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform
   );
-  runApp( ProviderScope(
+  runApp( const ProviderScope(
       child: MyApp()
   ));
 }
