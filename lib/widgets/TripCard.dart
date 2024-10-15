@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ridewave/model/TripsByCategory.dart';
+import 'package:ridewave/utils/AppColors.dart';
+import 'package:ridewave/widgets/Shimmer.dart';
+import 'package:ridewave/widgets/ShimmerLoading.dart';
 
 
 class TripCard extends StatelessWidget {
@@ -44,3 +47,24 @@ class TripCard extends StatelessWidget {
     );
   }
 }
+
+
+class TripCardShimmer extends StatelessWidget {
+  const TripCardShimmer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child:  Shimmer(
+          linearGradient: AppColors.shimmerGradient,
+        child: ShimmerLoading(isLoading: true, child: Container(
+          height: double.maxFinite,
+          width: double.maxFinite,
+          color: Colors.grey,
+        )),
+      ),
+    );
+  }
+}
+

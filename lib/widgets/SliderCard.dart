@@ -115,12 +115,13 @@ class SlicerCard extends StatelessWidget {
                           child: Row(
                             children: [
                               Expanded(
+                                flex:6,
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 4.0),
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text(trip.description,
+                                      Text(trip.title,
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 14,
@@ -171,6 +172,7 @@ class SlicerCard extends StatelessWidget {
                                 ),
                               ),
                               Expanded(
+                                flex:4,
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 4.0),
                                   child: Column(
@@ -184,7 +186,7 @@ class SlicerCard extends StatelessWidget {
                                       ),
                                       Text("${ trip.fromState} to ${ trip.toState}",
                                         style: TextStyle(
-                                            fontSize: 16,
+                                            fontSize: 14,
                                             fontWeight: FontWeight.bold,
                                             overflow: TextOverflow.ellipsis
                                         ),
@@ -196,7 +198,6 @@ class SlicerCard extends StatelessWidget {
                             ],
                           ),
                         )
-
                       ],
                     ),
                   ),

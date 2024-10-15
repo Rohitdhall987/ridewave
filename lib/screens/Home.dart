@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ridewave/provider/specilTrip_provider.dart';
 import 'package:ridewave/provider/state_provider.dart';
@@ -190,11 +191,50 @@ class Home extends ConsumerWidget {
                           },
                           child: Text('Error: $error'))
                       ),
-                      loading: ()=>Center(
-                        child: CircularProgressIndicator(
-                          color: Colors.black,
-                        ),
-                      ),
+                      loading:(){
+                        return SizedBox(
+                          height: MediaQuery.sizeOf(context).height * 0.9,
+                          child: ListView.builder(
+                            physics:const  NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                              itemCount: 3,
+                              itemBuilder: (context,index){
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: SizedBox(
+                                      height: MediaQuery.sizeOf(context).height * 0.03,
+                                      width: MediaQuery.sizeOf(context).width * 0.5,
+                                      child: const TripCardShimmer(),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: MediaQuery.sizeOf(context).height * 0.3,
+
+                                    child: ListView.builder(
+                                        shrinkWrap: true,
+                                        scrollDirection: Axis.horizontal,
+                                        physics:  const NeverScrollableScrollPhysics(),
+                                        itemCount: 3,
+                                        itemBuilder:(context,index){
+                                          return  Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: SizedBox(
+                                              width: MediaQuery.sizeOf(context).width * 0.5,
+                                              child: const TripCardShimmer()
+                                            ),
+                                          );
+                                        }
+                                    ),
+                                  )
+                                ],
+                              );
+                              }
+                          ),
+                        );
+                      },
 
                     data: (tripsByCategory){
                       return Column(
@@ -226,10 +266,19 @@ class Home extends ConsumerWidget {
                                       itemBuilder: (context,index){
                                         return Padding(
                                           padding: const EdgeInsets.all(8.0),
-                                          child: SizedBox(
-                                              height: MediaQuery.sizeOf(context).height * 0.3,
-                                              width: MediaQuery.sizeOf(context).width * 0.5,
-                                              child: TripCard(trip: category.trips[index])
+                                          child: GestureDetector(
+                                            onTap: (){
+                                              GoRouter.of(context).pushNamed("QueryForm",
+                                                pathParameters: {
+                                                  "id":category.trips[index].id.toString()
+                                                }
+                                              );
+                                            },
+                                            child: SizedBox(
+                                                height: MediaQuery.sizeOf(context).height * 0.3,
+                                                width: MediaQuery.sizeOf(context).width * 0.5,
+                                                child: TripCard(trip: category.trips[index])
+                                            ),
                                           ),
                                         );
                                       }
