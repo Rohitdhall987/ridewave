@@ -2,6 +2,8 @@ import 'package:go_router/go_router.dart';
 import 'package:ridewave/screens/Home.dart';
 import 'package:ridewave/screens/QueryForm.dart';
 import 'package:ridewave/screens/SplashScreen.dart';
+import 'package:ridewave/screens/TripDetails.dart';
+import 'package:ridewave/screens/TripsByState.dart';
 import 'package:ridewave/screens/UpdatePage.dart';
 import 'package:ridewave/screens/login.dart';
 
@@ -31,6 +33,16 @@ final routes = GoRouter(
           path: "/queryForm/:id",
           name: "QueryForm",
           builder: (context,state)=> QueryForm(id: int.parse(state.pathParameters["id"]!))
+      ),
+      GoRoute(
+          path: "/TripDetails/:id",
+          name: "TripDetails",
+          builder: (context,state)=> TripDetails(id: state.pathParameters["id"]!)
+      ),
+      GoRoute(
+          path: "/TripsByState/:stateName",
+          name: "TripsByState",
+          builder: (context,state)=> TripsByState(stateName: state.pathParameters["stateName"]!)
       ),
     ]
 );

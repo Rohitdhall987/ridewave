@@ -115,10 +115,19 @@ class Home extends ConsumerWidget {
                                   itemBuilder: (context,index){
                                     return Padding(
                                       padding: const EdgeInsets.all(8.0),
-                                      child: StateCard(
-                                          name: state.data[index].state,
-                                          image: state.data[index].image,
-                                          count: state.data[index].count.toString()
+                                      child: GestureDetector(
+                                        onTap: (){
+                                          GoRouter.of(context).pushNamed("TripsByState",
+                                            pathParameters: {
+                                              "stateName":state.data[index].state
+                                            }
+                                          );
+                                        },
+                                        child: StateCard(
+                                            name: state.data[index].state,
+                                            image: state.data[index].image,
+                                            count: state.data[index].count.toString()
+                                        ),
                                       ),
                                     );
                                   }
@@ -164,8 +173,17 @@ class Home extends ConsumerWidget {
                     data: (specialTrips){
                       return CarouselSlider(
                           items: specialTrips.alltrips.map((trip)=>
-                              SlicerCard(
-                                trip: trip,
+                              GestureDetector(
+                                onTap: (){
+                                  GoRouter.of(context).pushNamed("QueryForm",
+                                    queryParameters: {
+                                      "id":trip.id.toString()
+                                    }
+                                  );
+                                },
+                                child: SlicerCard(
+                                  trip: trip,
+                                ),
                               )
                           ).toList(),
                           options: CarouselOptions(
@@ -268,7 +286,7 @@ class Home extends ConsumerWidget {
                                           padding: const EdgeInsets.all(8.0),
                                           child: GestureDetector(
                                             onTap: (){
-                                              GoRouter.of(context).pushNamed("QueryForm",
+                                              GoRouter.of(context).pushNamed("TripDetails",
                                                 pathParameters: {
                                                   "id":category.trips[index].id.toString()
                                                 }

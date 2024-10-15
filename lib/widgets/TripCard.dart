@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ridewave/model/TripsByCategory.dart';
+import 'package:ridewave/model/Trip.dart';
 import 'package:ridewave/utils/AppColors.dart';
 import 'package:ridewave/widgets/Shimmer.dart';
 import 'package:ridewave/widgets/ShimmerLoading.dart';
