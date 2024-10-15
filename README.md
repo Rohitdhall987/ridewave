@@ -9,7 +9,6 @@ This Flutter app allows users to browse and book various tours and packages. The
 - **Booking System:** Users can book their preferred tour packages directly from the app.
 - **Search and Filter:** Search tours by destination, price range, or duration.
 - **User-Friendly UI:** Clean and intuitive design for easy navigation.
-- **Real-Time Updates:** Stay updated on the latest packages and offers.
 
 ## Getting Started
 
