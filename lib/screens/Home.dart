@@ -268,8 +268,18 @@ class Home extends ConsumerWidget {
                                       Text(category.title,
                                         style: AppStyles.title,
                                       ),
-                                      Text("View All",
-                                        style: AppStyles.viewButton,
+                                      GestureDetector(
+                                        onTap: (){
+                                          GoRouter.of(context).pushNamed("TripsByCategory",
+                                            pathParameters: {
+                                              "id":category.id.toString(),
+                                              "name":category.title,
+                                            }
+                                          );
+                                        },
+                                        child: Text("View All",
+                                          style: AppStyles.viewButton,
+                                        ),
                                       ),
 
                                     ],

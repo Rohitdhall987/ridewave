@@ -3,6 +3,7 @@ import 'package:ridewave/screens/Home.dart';
 import 'package:ridewave/screens/QueryForm.dart';
 import 'package:ridewave/screens/SplashScreen.dart';
 import 'package:ridewave/screens/TripDetails.dart';
+import 'package:ridewave/screens/TripsByCategory.dart';
 import 'package:ridewave/screens/TripsByState.dart';
 import 'package:ridewave/screens/UpdatePage.dart';
 import 'package:ridewave/screens/login.dart';
@@ -43,6 +44,11 @@ final routes = GoRouter(
           path: "/TripsByState/:stateName",
           name: "TripsByState",
           builder: (context,state)=> TripsByState(stateName: state.pathParameters["stateName"]!)
+      ),
+      GoRoute(
+          path: "/TripsByCategory/:id/:cateName",
+          name: "TripsByCategory",
+          builder: (context,state)=> TripsByCategory(id: state.pathParameters["id"]!,name: state.pathParameters["cateName"]!)
       ),
     ]
 );

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:ridewave/model/TripsByState.dart';
 
 class TripCardHorizontal extends StatelessWidget {
-  final Data trip;
+  final String title;
+  final String state;
+  final String price;
+  final String image;
 
-  const TripCardHorizontal({super.key,required this.trip});
+  const TripCardHorizontal({super.key,required this.title,required this.state,required this.price,required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class TripCardHorizontal extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.network(
-                trip.image,
+                image,
                 height: 80,
                 width: 80,
                 fit: BoxFit.cover,
@@ -36,17 +38,17 @@ class TripCardHorizontal extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    trip.title,
+                    title,
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   const SizedBox(height: 8),
-                  Text('State: ${trip.stateName}'),
+                  Text('State: $state'),
                   const SizedBox(height: 8),
                   Text(
-                    'Price: ${trip.price}',
+                    'Price: $price',
                     style: TextStyle(color: Colors.grey[600]),
                   ),
                 ],
