@@ -273,7 +273,7 @@ class Home extends ConsumerWidget {
                                           GoRouter.of(context).pushNamed("TripsByCategory",
                                             pathParameters: {
                                               "id":category.id.toString(),
-                                              "name":category.title,
+                                              "cateName":category.title,
                                             }
                                           );
                                         },
